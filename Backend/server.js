@@ -14,7 +14,7 @@ const db = mysql.createConnection({
 })
 
 app.get('/', (req, res) => {
-    return res.json('From Backend Side');
+    return res.json('Backend API');
     
 })
 
