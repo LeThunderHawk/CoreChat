@@ -14,7 +14,7 @@ const Login = () => {
         setInputs((values: any) => ({...values, [name]: value}))
       }
     const logindetails = async () => {
-        return fetch('http://localhost:8081/login?fname='+inputs.fname+'&lname='+inputs.lname+'&password='+md5(inputs.password))
+        return fetch('http://core-chat-backend.vercel.app/login?fname='+inputs.fname+'&lname='+inputs.lname+'&password='+md5(inputs.password))
         .then(res => res.json())
         .then(dataJson => {return dataJson})
         .catch(err => console.log(err))
