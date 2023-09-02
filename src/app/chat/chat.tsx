@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faArrowRight, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 const sendMessage = (message: any, to: any) => {
-  fetch('http://localhost:8081/sendmsg?msg=' + message + '&from=' + getCookie('SSID') + '&to=' + to)
+  fetch('http://core-chat-backend.vercel.app/sendmsg?msg=' + message + '&from=' + getCookie('SSID') + '&to=' + to)
   .then(res => res.json)
   .then(dataJson => {return dataJson})
   .catch(err => console.log(err))
@@ -21,12 +21,12 @@ const Chat = () => {
   const [myuser, setMyuser] = useState({} as any);
   let enter = false;
 useEffect(() => {
-    fetch('http://localhost:8081/users')
+    fetch('http://core-chat-backend.vercel.app/users')
     .then(res => res.json())
     .then(dataJson => { setUsers(dataJson); return dataJson })
     .catch(err => console.log(err))
 
-    fetch('http://localhost:8081/getuserinfo?user_id=' + getCookie('SSID'))
+    fetch('http://core-chat-backend.vercel.app/getuserinfo?user_id=' + getCookie('SSID'))
     .then(res=>res.json())
     .then(dataJson => {setMyuser(dataJson);})
     .catch(err => console.log(err))
@@ -34,19 +34,19 @@ useEffect(() => {
 
   const deleteMessage = (e: any) => {
     const msg_id = e.target.id;
-    fetch('http://localhost:8081/delete?msg_id=' + msg_id)
+    fetch('http://core-chat-backend.vercel.app/delete?msg_id=' + msg_id)
     .catch(err => console.log(err))
     fetchmessages(getCookie('SSID'), userId)
   }
   
   
   const fetchmessages = async (SSID: any, userId: any) => {
-    fetch('http://localhost:8081/getuserinfo?user_id='+userId)
+    fetch('http://core-chat-backend.vercel.app/getuserinfo?user_id='+userId)
     .then(res=> res.json())
     .then(dataJson => setUsername(dataJson))
     .catch(err => console.log(err))
 
-    fetch('http://localhost:8081/getmessages?myid=' + SSID + '&personid=' + userId)
+    fetch('http://core-chat-backend.vercel.app/getmessages?myid=' + SSID + '&personid=' + userId)
     .then(res => res.json())
     .then(dataJson => { setMessages(dataJson); return(dataJson)})
     .catch(err => console.log(err))
