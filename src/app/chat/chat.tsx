@@ -18,7 +18,7 @@ const Chat = () => {
   const [newMessageCounter, setNewMessageCounter] = useState({} as any)
   const controller = new AbortController();
   const signal = controller.signal;
-  const apiRoute = "http://192.168.2.177:3000"
+  const apiRoute = "corechat.vercel.app"
   var loadedMessageCount = 0;
   let enter = false;
 useEffect(() => {
